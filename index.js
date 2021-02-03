@@ -35,6 +35,8 @@ myLibrary = [...getter];
 getBooks();
 if (getter.length === 0) {
   getter.push(new Book('Neko Master', '9999 Reasons I love my mommy', '9999999', true));
+  myLibrary = [...getter]
+  setBooks()
 }
 
 btn.addEventListener('click', (e) => {
