@@ -30,7 +30,7 @@ To get a local copy up and running follow these simple example steps.
 
 2- Open the folder on VS Code. 
 ```
-    cd Book-js
+    cd Library-js
     code .
 ```
 
