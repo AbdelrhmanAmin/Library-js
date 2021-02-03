@@ -16,7 +16,8 @@ function getBooks() {
   data = JSON.parse(data);
   if (data == null) {
     myLibrary.push(
-      new Book('Neko Master', '9999 Reasons I love my mommy', '9999999', true));
+      new Book('Neko Master', '9999 Reasons I love my mommy', '9999999', true)
+    );
     setBooks();
     data = JSON.parse(localStorage.getItem('library'));
   }
