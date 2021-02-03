@@ -35,8 +35,8 @@ myLibrary = [...getter];
 getBooks();
 if (getter.length === 0) {
   getter.push(new Book('Neko Master', '9999 Reasons I love my mommy', '9999999', true));
-  myLibrary = [...getter]
-  setBooks()
+  myLibrary = [...getter];
+  setBooks();
 }
 
 btn.addEventListener('click', (e) => {
@@ -65,7 +65,7 @@ function displayEachBook() {
       readBtn.addEventListener('click', () => {
         myLibrary[myLibrary.indexOf(book)].read = true;
         setBooks();
-        location.reload();
+        window.location.reload();
       });
     } else {
       readBtn.innerHTML = 'unread';
@@ -73,7 +73,7 @@ function displayEachBook() {
       readBtn.addEventListener('click', () => {
         myLibrary[myLibrary.indexOf(book)].read = false;
         setBooks();
-        location.reload();
+        window.location.reload();
       });
     }
 
