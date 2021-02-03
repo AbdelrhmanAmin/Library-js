@@ -34,15 +34,9 @@ const getter = getBooks();
 myLibrary = [...getter];
 getBooks();
 if (getter.length === 0) {
-<<<<<<< HEAD
   getter.push(new Book('Neko Master', '9999 Reasons I love my mommy', '9999999', true));
   myLibrary = [...getter]
   setBooks()
-=======
-  getter.push(
-    new Book('Neko Master', '9999 Reasons I love my mommy', '9999999', true)
-  );
->>>>>>> parent of 2d93c52... Fix linters + Add screenshot
 }
 
 btn.addEventListener('click', (e) => {
