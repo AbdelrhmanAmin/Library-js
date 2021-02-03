@@ -11,6 +11,11 @@ function getBooks() {
   data = JSON.parse(data);
   return data;
 }
+function setBooks() {
+  const data = JSON.stringify(myLibrary);
+  localStorage.setItem('library', data);
+}
+
 function Book(author, title, pages, read = false) {
   this.author = author;
   this.title = title;
@@ -21,13 +26,9 @@ function Book(author, title, pages, read = false) {
 function addBookToLibrary(arr, book) {
   arr.push(book);
   setBooks();
-  location.reload();
+  window.location.reload();
 }
 
-function setBooks() {
-  const data = JSON.stringify(myLibrary);
-  localStorage.setItem('library', data);
-}
 
 const getter = getBooks();
 myLibrary = [...getter];
@@ -41,56 +42,56 @@ if (getter.length === 0) {
 btn.addEventListener('click', (e) => {
   e.preventDefault();
   if (auth.value !== '' && title.value !== '' && pages.value !== '') {
-    let book = new Book(auth.value, title.value, pages.value, read.checked);
+    const book = new Book(auth.value, title.value, pages.value, read.checked);
     addBookToLibrary(myLibrary, book);
   }
 });
 
 function displayEachBook() {
   getter.forEach((book) => {
-    let tr = document.createElement('tr');
-    let tdAuthor = document.createElement('td');
-    let tdTitle = document.createElement('td');
-    let tdPages = document.createElement('td');
-    let td_btn = document.createElement('td');
-    let td_btn2 = document.createElement('td');
-    let del_btn = document.createElement('button');
-    let read_btn = document.createElement('button');
-    del_btn.innerHTML = 'Delete';
-    del_btn.className = 'btn btn-danger';
-    if (book.read == false) {
-      read_btn.innerHTML = 'read';
-      read_btn.className = 'btn btn-success';
-      read_btn.addEventListener('click', () => {
+    const tr = document.createElement('tr');
+    const tdAuthor = document.createElement('td');
+    const tdTitle = document.createElement('td');
+    const tdPages = document.createElement('td');
+    const tdBtn = document.createElement('td');
+    const tdBtn2 = document.createElement('td');
+    const delBtn = document.createElement('button');
+    const readBtn = document.createElement('button');
+    delBtn.innerHTML = 'Delete';
+    delBtn.className = 'btn btn-danger';
+    if (book.read === false) {
+      readBtn.innerHTML = 'read';
+      readBtn.className = 'btn btn-success';
+      readBtn.addEventListener('click', () => {
         myLibrary[myLibrary.indexOf(book)].read = true;
         setBooks();
         location.reload();
       });
     } else {
-      read_btn.innerHTML = 'unread';
-      read_btn.className = 'btn btn-warning';
-      read_btn.addEventListener('click', () => {
+      readBtn.innerHTML = 'unread';
+      readBtn.className = 'btn btn-warning';
+      readBtn.addEventListener('click', () => {
         myLibrary[myLibrary.indexOf(book)].read = false;
         setBooks();
         location.reload();
       });
     }
 
-    del_btn.addEventListener('click', () => {
+    delBtn.addEventListener('click', () => {
       myLibrary.splice(myLibrary.indexOf(book), 1);
       localStorage.setItem('library', JSON.stringify(myLibrary));
       tr.innerHTML = '';
     });
-    td_btn.appendChild(del_btn);
-    td_btn2.appendChild(read_btn);
+    tdBtn.appendChild(delBtn);
+    tdBtn2.appendChild(readBtn);
     tdAuthor.innerHTML = book.author;
     tdTitle.innerHTML = book.title;
     tdPages.innerHTML = book.pages;
-    tr.appendChild(td_Author);
-    tr.appendChild(td_Title);
-    tr.appendChild(td_Pages);
-    tr.appendChild(td_btn2);
-    tr.appendChild(td_btn);
+    tr.appendChild(tdAuthor);
+    tr.appendChild(tdTitle);
+    tr.appendChild(tdPages);
+    tr.appendChild(tdBtn2);
+    tr.appendChild(tdBtn);
     table.appendChild(tr);
   });
 }
