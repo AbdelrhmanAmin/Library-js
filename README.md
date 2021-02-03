@@ -8,9 +8,7 @@
 - Bootstrap
 - JavaScript
 
-## Screenshots
-
-![screneshot](./screen.png)
+## Live Demo
 
 
 ## Getting Started
