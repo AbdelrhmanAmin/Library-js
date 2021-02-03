@@ -13,18 +13,43 @@
     />
   </head>
   <body>
-    <span id="demo"></span>
     <h2>Books</h2>
     <form>
-      <label for="author">author</label>
-      <input type="text" id="author" name="author" required /><br />
-      <label for="title">title</label>
-      <input type="text" id="title" name="title" required /><br />
-      <label for="pages">Pages</label>
-      <input type="number" id="pages" name="pages" required /><br />
-      <label for="read">Did you read it?</label>
-      <input type="checkbox" name="read" id="read" /> <br />
-      <button class="submit">NEW BOOK</button>
+      <div class="form-group">
+        <label for="author">author</label>
+        <input
+          type="text"
+          id="author"
+          name="author"
+          class="form-control"
+          required
+        /><br />
+      </div>
+      <div class="form-group">
+        <label for="title">title</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          class="form-control"
+          required
+        /><br />
+      </div>
+      <div class="form-group">
+        <label for="pages">Pages</label>
+        <input
+          type="number"
+          id="pages"
+          name="pages"
+          class="form-control"
+          required
+        /><br />
+      </div>
+      <div class="form-group">
+        <label for="read">Did you read it?</label>
+        <input type="checkbox" name="read" id="read" /> <br />
+      </div>
+      <button id="submit" class="btn btn-info">NEW BOOK</button>
     </form>
 
     <table id="table">
@@ -33,6 +58,7 @@
         <th>Title</th>
         <th>Pages</th>
         <th>Read?</th>
+        <th>Delete</th>
       </tr>
     </table>
     <script src="index.js"></script>

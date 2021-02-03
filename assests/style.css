@@ -14,3 +14,9 @@ th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+form {
+  width: 600px;
+  margin: 0 auto;
+  border: 5px solid #17a2b8;
+  padding: 15px 30px;
+}

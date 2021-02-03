@@ -3,11 +3,16 @@ let auth = document.getElementById("author");
 let title = document.getElementById("title");
 let pages = document.getElementById("pages");
 let read = document.getElementById("read");
-let btn = document.querySelector(".submit");
+let btn = document.getElementById("submit");
 let table = document.getElementById("table");
 let getter = getBooks();
+getBooks();
+if (getter.length == 0) {
+  getter.push(
+    new Book("Neko Master", "9999 Reasons I love my mom", "9999999", true)
+  );
+}
 myLibrary = [...getter];
-
 function Book(author, title, pages, read = false) {
   this.author = author;
   this.title = title;
@@ -18,33 +23,27 @@ function Book(author, title, pages, read = false) {
 function addBookToLibrary(arr, book) {
   arr.push(book);
   setBooks();
+  location.reload();
 }
 
 function setBooks() {
   const data = JSON.stringify(myLibrary);
   localStorage.setItem("library", data);
+  console.log("WORKED", getter);
 }
 
 function getBooks() {
   let data = localStorage.getItem("library");
   data = JSON.parse(data);
-  const result = [];
-  data.map((book) => {
-    const { author, title, pages, read } = book;
-    result.push(new Book(author, title, pages, read));
-    return true;
-  });
-  return result;
+  return data;
 }
 
-btn.addEventListener("click", () => {
+btn.addEventListener("click", (e) => {
+  e.preventDefault();
   if (auth.value !== "" && title.value !== "" && pages.value !== "") {
     let book = new Book(auth.value, title.value, pages.value, read.checked);
+    console.log(book);
     addBookToLibrary(myLibrary, book);
-    auth.reset();
-    title.reset();
-    pages.reset();
-    read.reset();
   }
 });
 
