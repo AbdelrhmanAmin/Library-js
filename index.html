@@ -63,26 +63,6 @@
     </table>
     <script src="index.js"></script>
     <script>
-      const auth = document.getElementById('author');
-      const title = document.getElementById('title');
-      const pages = document.getElementById('pages');
-      const read = document.getElementById('read');
-      const btn = document.getElementById('submit');
-
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (auth.value !== '' && title.value !== '' && pages.value !== '') {
-          const book = new Book(
-            auth.value,
-            title.value,
-            pages.value,
-            read.checked
-          );
-          addBookToLibrary(myLibrary, book);
-        }
-      });
-    </script>
-    <script>
       function displayEachBook() {
         const table = document.getElementById('table');
         getter.forEach((book) => {

@@ -16,8 +16,7 @@ function getBooks() {
   data = JSON.parse(data);
   if (data == null) {
     myLibrary.push(
-      new Book('Neko Master', '9999 Reasons I love my mommy', '9999999', true)
-    );
+      new Book('Neko Master', '9999 Reasons I love my mommy', '9999999', true));
     setBooks();
     data = JSON.parse(localStorage.getItem('library'));
   }
@@ -32,3 +31,17 @@ function addBookToLibrary(arr, book) {
 
 const getter = getBooks();
 myLibrary = [...getter];
+
+const auth = document.getElementById('author');
+const title = document.getElementById('title');
+const pages = document.getElementById('pages');
+const read = document.getElementById('read');
+const btn = document.getElementById('submit');
+
+btn.addEventListener('click', (e) => {
+  e.preventDefault();
+  if (auth.value !== '' && title.value !== '' && pages.value !== '') {
+    const book = new Book(auth.value, title.value, pages.value, read.checked);
+    addBookToLibrary(myLibrary, book);
+  }
+});
