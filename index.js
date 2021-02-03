@@ -6,6 +6,11 @@ function Book(author, title, pages, read = false) {
   this.read = read;
 }
 
+function setBooks() {
+  const data = JSON.stringify(myLibrary);
+  localStorage.setItem('library', data);
+}
+
 function getBooks() {
   let data = localStorage.getItem('library');
   data = JSON.parse(data);
@@ -17,10 +22,6 @@ function getBooks() {
     data = JSON.parse(localStorage.getItem('library'));
   }
   return data;
-}
-function setBooks() {
-  const data = JSON.stringify(myLibrary);
-  localStorage.setItem('library', data);
 }
 
 function addBookToLibrary(arr, book) {
