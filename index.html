@@ -5,6 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book</title>
     <link rel="stylesheet" href="assests/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
   </head>
-  <body></body>
+  <body>
+    <h2>Books</h2>
+    <form>
+      <div class="form-group">
+        <label for="author">author</label>
+        <input
+          type="text"
+          id="author"
+          name="author"
+          class="form-control"
+          required
+        /><br />
+      </div>
+      <div class="form-group">
+        <label for="title">title</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          class="form-control"
+          required
+        /><br />
+      </div>
+      <div class="form-group">
+        <label for="pages">Pages</label>
+        <input
+          type="number"
+          id="pages"
+          name="pages"
+          class="form-control"
+          required
+        /><br />
+      </div>
+      <div class="form-group">
+        <label for="read">Did you read it?</label>
+        <input type="checkbox" name="read" id="read" /> <br />
+      </div>
+      <button id="submit" class="btn btn-info">NEW BOOK</button>
+    </form>
+
+    <table id="table">
+      <tr>
+        <th>Author</th>
+        <th>Title</th>
+        <th>Pages</th>
+        <th>Read?</th>
+        <th>Delete</th>
+      </tr>
+    </table>
+    <script src="index.js"></script>
+    <script>
+      function displayEachBook() {
+        const table = document.getElementById('table');
+        getter.forEach((book) => {
+          const tr = document.createElement('tr');
+          const tdAuthor = document.createElement('td');
+          const tdTitle = document.createElement('td');
+          const tdPages = document.createElement('td');
+          const tdBtn = document.createElement('td');
+          const tdBtn2 = document.createElement('td');
+          const delBtn = document.createElement('button');
+          const readBtn = document.createElement('button');
+          delBtn.innerHTML = 'Delete';
+          delBtn.className = 'btn btn-danger';
+          if (book.read === false) {
+            readBtn.innerHTML = 'read';
+            readBtn.className = 'btn btn-success';
+            readBtn.addEventListener('click', () => {
+              myLibrary[myLibrary.indexOf(book)].read = true;
+              setBooks();
+              window.location.reload();
+            });
+          } else {
+            readBtn.innerHTML = 'unread';
+            readBtn.className = 'btn btn-warning';
+            readBtn.addEventListener('click', () => {
+              myLibrary[myLibrary.indexOf(book)].read = false;
+              setBooks();
+              window.location.reload();
+            });
+          }
+
+          delBtn.addEventListener('click', () => {
+            myLibrary.splice(myLibrary.indexOf(book), 1);
+            localStorage.setItem('library', JSON.stringify(myLibrary));
+            tr.innerHTML = '';
+          });
+          tdBtn.appendChild(delBtn);
+          tdBtn2.appendChild(readBtn);
+          tdAuthor.innerHTML = book.author;
+          tdTitle.innerHTML = book.title;
+          tdPages.innerHTML = book.pages;
+          tr.appendChild(tdAuthor);
+          tr.appendChild(tdTitle);
+          tr.appendChild(tdPages);
+          tr.appendChild(tdBtn2);
+          tr.appendChild(tdBtn);
+          table.appendChild(tr);
+        });
+      }
+      displayEachBook();
+    </script>
+  </body>
 </html>

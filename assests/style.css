@@ -6,11 +6,18 @@ table {
 
 td,
 th {
-  border: 1px solid #dddddd;
+  border: 1px solid #ddd;
   text-align: left;
   padding: 8px;
 }
 
 tr:nth-child(even) {
-  background-color: #dddddd;
+  background-color: #ddd;
+}
+
+form {
+  width: 600px;
+  margin: 0 auto;
+  border: 5px solid #17a2b8;
+  padding: 15px 30px;
 }
